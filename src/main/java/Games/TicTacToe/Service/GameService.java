@@ -10,10 +10,12 @@ import Games.TicTacToe.Model.Player;
 import Games.TicTacToe.Model.Turn;
 import Games.TicTacToe.Storage.GameStorage;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 @Service
 @RequiredArgsConstructor
+@Slf4j
 public class GameService {
 
     private WinConditions winConditions;
@@ -58,9 +60,10 @@ public class GameService {
         if(!game.getGameStatus().equals(GameStatus.running))
             throw new GameInTheWrongStatusException();
 
-        game.setField(turn);
+        //@TODO methode anschaun, fheler wegen board
+        game.setBoard((game.setField(turn)));
 
-        game.setWinConditions(game.isWon(turn.getFieldStatus()));
+        game.setWinConditions(game.isWon(turn.getFieldStatus(), game.getBoard()));
 
         GameStorage.getInstance().setGame(game);
 
