@@ -60,7 +60,6 @@ public class GameService {
         if(!game.getGameStatus().equals(GameStatus.running))
             throw new GameInTheWrongStatusException();
 
-        //@TODO methode anschaun, fheler wegen board
         game.setBoard((game.setField(turn)));
 
         game.setWinConditions(game.isWon(turn.getFieldStatus(), game.getBoard()));

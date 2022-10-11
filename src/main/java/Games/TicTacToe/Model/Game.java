@@ -38,20 +38,16 @@ public class Game {
         gameStatus = GameStatus.running;
     }
 
-    //@TODO nach "board.getPlayField()[turn.getTarget().getRow()][turn.getTarget().getColumn()] = turn.getFieldStatus();"
     public Board setField(Turn turn){
-        log.info(board.getPlayField()[0][0].toString());
         board.getPlayField()[turn.getTarget().getRow()][turn.getTarget().getColumn()] = turn.getFieldStatus();
-        log.info("--------");
-        log.info(board.getPlayField()[0][0].toString());
         return board;
     }
 
-    public WinConditions isWon(FieldStatus player, Board board){
+    public WinConditions isWon(FieldStatus symbol, Board board){
         for(int row = 0; row < board.getHeight(); row++){
             for(int column = 0; row < board.getWith(); column++){
-                if(board.getPlayField()[row][column].equals(player)) {
-                    CheckDirection direction = checkWin(player, row, column, null, 1);
+                if(board.getPlayField()[row][column].equals(symbol)) {
+                    CheckDirection direction = checkWin(symbol, row, column, null, 1);
                     if (direction != null)
                         return new WinConditions(row, column, direction);
                 }

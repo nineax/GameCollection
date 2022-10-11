@@ -19,7 +19,7 @@ function makeAMove(type, xCoordinate, yCoordinate) {
         contentType: "application/json",
         data: JSON.stringify({
             "gameID": gameID,
-            "type": type,
+            "fieldStatus": type,
             "target": {
             "row": xCoordinate,
             "column": yCoordinate
@@ -39,9 +39,9 @@ function displayResponse(data) {
     let board = data.board;
     for (let i = 0; i < board.length; i++) {
         for (let j = 0; j < board[i].length; j++) {
-            if (String(board[i][j]) === "player1") {
+            if (String(board[i][j]) === 'X') {
                 turns[i][j] = 'X'
-            } else if (String(board[i][j]) === "player2") {
+            } else if (String(board[i][j]) === 'O') {
                 turns[i][j] = 'O';
             }
             let id = i + "_" + j;
