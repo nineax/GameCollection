@@ -37,11 +37,11 @@ function makeAMove(type, xCoordinate, yCoordinate) {
 
 function displayResponse(data) {
     let board = data.board;
-    for (let i = 0; i < board.length; i++) {
-        for (let j = 0; j < board[i].length; j++) {
-            if (String(board[i][j]) === 'X') {
+    for (let i = 0; i < board.playField.length; i++) {
+        for (let j = 0; j < board.playField[i].length; j++) {
+            if (String(board.playField[i][j]) === 'X') {
                 turns[i][j] = 'X'
-            } else if (String(board[i][j]) === 'O') {
+            } else if (String(board.playField[i][j]) === 'O') {
                 turns[i][j] = 'O';
             }
             let id = i + "_" + j;
