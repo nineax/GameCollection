@@ -2,6 +2,7 @@ package Games.TicTacToe.Model;
 
 import Games.Abstract.Enums.*;
 import Games.Abstract.Records.*;
+import Games.Exception.NotYourTurnException;
 import lombok.*;
 import lombok.extern.slf4j.Slf4j;
 
@@ -13,6 +14,8 @@ import java.util.UUID;
 @Slf4j
 public class Game {
     private String gameID;
+
+    private Player currentPlayer;
 
     private Player player1;
     private Player player2;
@@ -29,33 +32,40 @@ public class Game {
         gameStatus = GameStatus.creating;
         gameID = UUID.randomUUID().toString();
         player1 = player;
+        player1.setSymbol(FieldStatus.X);
+        currentPlayer = player1;
         board = new Board();
         gameStatus = GameStatus.wantingForPlayer;
     }
 
     public void connectToGame(Player player){
         player2 = player;
+        player2.setSymbol(FieldStatus.O);
         gameStatus = GameStatus.running;
     }
 
-    public Board setField(Turn turn){
+    public Board setField(Turn turn) throws NotYourTurnException {
+        if(!turn.getFieldStatus().equals(currentPlayer.getSymbol()))
+            throw new NotYourTurnException();
         board.getPlayField()[turn.getTarget().getRow()][turn.getTarget().getColumn()] = turn.getFieldStatus();
         return board;
     }
 
     public WinConditions isWon(FieldStatus symbol, Board board){
         for(int row = 0; row < board.getHeight(); row++){
-            for(int column = 0; row < board.getWith(); column++){
+            for(int column = 0; column < board.getWith(); column++){
                 if(board.getPlayField()[row][column].equals(symbol)) {
                     CheckDirection direction = checkWin(symbol, row, column, null, 1);
-                    if (direction != null)
+                    if (direction != null) {
+                        winner = currentPlayer;
                         return new WinConditions(row, column, direction);
+                    }
                 }
             }
         }
         return null;
     }
-
+    //@TODO Es wird aktuell immer ein gewinner zurückgegeben
     private CheckDirection checkWin(FieldStatus player, Integer row, Integer column, CheckDirection direction, Integer length){
         if(direction == null) {
             if (player == getStatusOnCoordinate(row, column, CheckDirection.horizontal)) {
@@ -85,7 +95,7 @@ public class Game {
 
             Integer checkRow = direction == CheckDirection.diagonalLeft || direction == CheckDirection.diagonalRight || direction == CheckDirection.horizontal ? row + 1 : row;
             Integer checkColumn = direction == CheckDirection.horizontal || direction == CheckDirection.diagonalRight ? column + 1 : (direction == CheckDirection.diagonalLeft ? column - 1 : column);
-            return checkWin(player, checkRow, checkColumn, direction, length +1);
+            return checkWin(player, checkRow, checkColumn, direction, length + 1);
         }
     }
 
@@ -97,5 +107,12 @@ public class Game {
             return null;
 
         return board.getPlayField()[checkRow][checkColumn];
+    }
+
+    public void switchCurrentPlayer(){
+        if(currentPlayer == player1)
+            currentPlayer = player2;
+        else
+            currentPlayer = player1;
     }
 }

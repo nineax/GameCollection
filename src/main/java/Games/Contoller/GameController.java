@@ -41,7 +41,7 @@ public class GameController {
     }
 
     @PostMapping("/tic-tac-toe/turn")
-    public ResponseEntity<Game> ticTacToeTurn(@RequestBody Turn turn) throws GameInTheWrongStatusException, GameNotFoundException {
+    public ResponseEntity<Game> ticTacToeTurn(@RequestBody Turn turn) throws GameInTheWrongStatusException, GameNotFoundException, NotYourTurnException {
         log.info("In game " +  turn.getGameID() + " was made a turn");
         Game game = ticTacToeGameService.turn(turn);
         simpMessagingTemplate.convertAndSend("/topic/tic-tac-toe-game-progress/"+game.getGameID(), game);

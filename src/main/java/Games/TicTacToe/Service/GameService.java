@@ -5,6 +5,7 @@ import Games.Abstract.Records.WinConditions;
 import Games.Exception.GameAlreadyRunningException;
 import Games.Exception.GameInTheWrongStatusException;
 import Games.Exception.GameNotFoundException;
+import Games.Exception.NotYourTurnException;
 import Games.TicTacToe.Model.Game;
 import Games.TicTacToe.Model.Player;
 import Games.TicTacToe.Model.Turn;
@@ -17,6 +18,8 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 @Slf4j
 public class GameService {
+
+    //@TODO win symbole farbig markieren
 
     private WinConditions winConditions;
 
@@ -51,7 +54,7 @@ public class GameService {
         return game;
     }
 
-    public Game turn(Turn turn) throws GameNotFoundException, GameInTheWrongStatusException {
+    public Game turn(Turn turn) throws GameNotFoundException, GameInTheWrongStatusException, NotYourTurnException {
         if(!GameStorage.getInstance().getGames().containsKey(turn.getGameID()))
             throw new GameNotFoundException();
 
@@ -63,6 +66,8 @@ public class GameService {
         game.setBoard((game.setField(turn)));
 
         game.setWinConditions(game.isWon(turn.getFieldStatus(), game.getBoard()));
+
+        game.switchCurrentPlayer();
 
         GameStorage.getInstance().setGame(game);
 

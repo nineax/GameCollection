@@ -49,7 +49,7 @@ function displayResponse(data) {
         }
     }
     if (data.winner != null) {
-        alert("Winner is " + data.winner);
+        alert("Winner is " + data.winner.name);
     }
     gameOn = true;
 }

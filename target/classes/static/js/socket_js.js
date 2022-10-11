@@ -12,7 +12,6 @@ function connectToSocket(gameID) {
         console.log("connected to the frame: " + frame);
         stompClient.subscribe("/topic/tic-tac-toe-game-progress/" + gameID, function (response) {
             let data = JSON.parse(response.body);
-            console.log(data);
             displayResponse(data);
         })
     })
