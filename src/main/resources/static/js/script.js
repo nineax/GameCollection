@@ -6,7 +6,7 @@ function playerTurn(turn, id) {
     if (gameOn) {
         var spotTaken = $("#" + id).text();
         if (spotTaken === "#") {
-            makeAMove(playerType, id.split("_")[0], id.split("_")[1]);
+                makeAMove(playerType, id.split("_")[0], id.split("_")[1]);
         }
     }
 }

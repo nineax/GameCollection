@@ -6,6 +6,7 @@ import Games.Exception.GameAlreadyRunningException;
 import Games.Exception.GameInTheWrongStatusException;
 import Games.Exception.GameNotFoundException;
 import Games.Exception.NotYourTurnException;
+import Games.TicTacToe.Model.Board;
 import Games.TicTacToe.Model.Game;
 import Games.TicTacToe.Model.Player;
 import Games.TicTacToe.Model.Turn;
@@ -70,6 +71,20 @@ public class GameService {
         game.switchCurrentPlayer();
 
         GameStorage.getInstance().setGame(game);
+
+        return game;
+    }
+
+    public Game reset(String gameID) throws GameNotFoundException, GameInTheWrongStatusException {
+        if(!GameStorage.getInstance().getGames().containsKey(gameID))
+            throw new GameNotFoundException();
+
+        Game game = GameStorage.getInstance().getGames().get(gameID);
+
+        if(game.getGameStatus().equals(GameStatus.wantingForPlayer))
+            throw new GameInTheWrongStatusException();
+
+        game.setBoard(new Board());
 
         return game;
     }

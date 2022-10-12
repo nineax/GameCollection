@@ -47,4 +47,12 @@ public class GameController {
         simpMessagingTemplate.convertAndSend("/topic/tic-tac-toe-game-progress/"+game.getGameID(), game);
         return ResponseEntity.ok(game);
     }
+
+    @PostMapping("/tic-tac-toe/reset")
+    public ResponseEntity<Game> ticTacToeReset(String gameID) throws GameInTheWrongStatusException, GameNotFoundException {
+        log.info("In game " +  gameID + " was made a turn");
+        Game game = ticTacToeGameService.reset(gameID);
+        simpMessagingTemplate.convertAndSend("/topic/tic-tac-toe-game-progress/"+game.getGameID(), game);
+        return ResponseEntity.ok(game);
+    }
 }
