@@ -52,6 +52,7 @@ function displayResponse(data) {
     }
     if (data.winner != null) {
         alert("Winner is " + data.winner.name);
+        markWin(data);
     }
     gameOn = true;
 }
@@ -64,6 +65,10 @@ $(".tic").click(function () {
 function displayEmptyBoard(){
     turns = [["#", "#", "#"], ["#", "#", "#"], ["#", "#", "#"]];
     $(".tic").text("#");
+}
+
+function markWin(data){
+    //@TODO aus dem feld und winCondition die passenden felder highlighten
 }
 
 $("#reset").click(function () {

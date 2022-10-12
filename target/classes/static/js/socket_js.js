@@ -109,7 +109,7 @@ function connectToSpecificGame() {
         })
     }
 }
-//@TODO Für spieler 2 wird das board nicht aktualisiert
+
 function reset() {
     let gameID = document.getElementById("displayGameID").innerText;
     $.ajax({

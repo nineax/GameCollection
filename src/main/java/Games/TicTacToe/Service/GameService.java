@@ -20,8 +20,6 @@ import org.springframework.stereotype.Service;
 @Slf4j
 public class GameService {
 
-    //@TODO win symbole farbig markieren
-
     private WinConditions winConditions;
 
     public Game createGame(Player player1){
