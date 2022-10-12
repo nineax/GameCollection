@@ -44,6 +44,8 @@ function displayResponse(data) {
             } else if (String(board.playField[i][j]) === 'O') {
                 turns[i][j] = 'O';
             }
+            else
+                turns[i][j] = '#';
             let id = i + "_" + j;
             $("#" + id).text(turns[i][j]);
         }
@@ -59,8 +61,11 @@ $(".tic").click(function () {
     playerTurn(turn, slot);
 });
 
-
+function displayEmptyBoard(){
+    turns = [["#", "#", "#"], ["#", "#", "#"], ["#", "#", "#"]];
+    $(".tic").text("#");
+}
 
 $("#reset").click(function () {
-    reset();
+    reset(gameID);
 });

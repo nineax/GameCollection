@@ -33,8 +33,9 @@ function create_game() {
             success: function (data) {
                 gameID = data.gameID;
                 playerType = 'X';
-                reset();
+                displayEmptyBoard();
                 connectToSocket(gameID);
+                document.getElementById("displayGameID").innerHTML = gameID;
                 alert("Your created a game. Game id is: " + data.gameID);
                 gameOn = true;
             },
@@ -62,8 +63,9 @@ function connectToRandom() {
             success: function (data) {
                 gameID = data.gameID;
                 playerType = 'O';
-                reset();
+                displayEmptyBoard();
                 connectToSocket(gameID);
+                document.getElementById("displayGameID").innerHTML = gameID;
                 alert("Congrats you're playing with: " + data.player1.name);
             },
             error: function (error) {
@@ -96,8 +98,9 @@ function connectToSpecificGame() {
             success: function (data) {
                 gameID = data.gameID;
                 playerType = 'O';
-                reset();
+                displayEmptyBoard();
                 connectToSocket(gameID);
+                document.getElementById("displayGameID").innerHTML = gameID;
                 alert("Congrats you're playing with: " + data.player1.name);
             },
             error: function (error) {
@@ -105,4 +108,26 @@ function connectToSpecificGame() {
             }
         })
     }
+}
+//@TODO Für spieler 2 wird das board nicht aktualisiert
+function reset() {
+    let gameID = document.getElementById("displayGameID").innerText;
+    $.ajax({
+        url: url + "/games/tic-tac-toe/reset",
+        type: 'POST',
+        dataType: "json",
+        contentType: "application/json",
+        data: JSON.stringify({
+            "gameID": gameID
+        }),
+        success: function (data) {
+            console.log(data);
+            displayEmptyBoard();
+            gameOn = false;
+            displayResponse(data);
+        },
+        error: function (error) {
+            console.log(error);
+        }
+    })
 }
