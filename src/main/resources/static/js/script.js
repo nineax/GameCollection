@@ -68,7 +68,22 @@ function displayEmptyBoard(){
 }
 
 function markWin(data){
+    let fieldID = -1;
+    fieldID = getFieldID(data.winCondition.row, data.winCondition.column);
+    for(int i = 0; i < 3; i++){
+        moveDirection();
+
+    }
     //@TODO aus dem feld und winCondition die passenden felder highlighten
+}
+
+function getFieldID(row, column){
+    let fieldID = row + "_" + column;
+    return fieldID;
+}
+
+function moveDirection(){
+
 }
 
 $("#reset").click(function () {
