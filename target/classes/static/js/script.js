@@ -27,15 +27,15 @@ function makeAMove(type, xCoordinate, yCoordinate) {
         }),
         success: function (data) {
             gameOn = false;
-            displayResponse(data);
+            displayResposeee(data);
         },
         error: function (error) {
             console.log(error);
         }
     })
 }
-
-function displayResponse(data) {
+//@TODO wird zwei mal ausgeführt nur für den gewinnenden spieler
+function displayResposeee(data) {
     let board = data.board;
     for (let i = 0; i < board.playField.length; i++) {
         for (let j = 0; j < board.playField[i].length; j++) {
@@ -52,7 +52,8 @@ function displayResponse(data) {
     }
     if (data.winner != null) {
         alert("Winner is " + data.winner.name);
-        markWin(data.winConditions.row, data.winConditions.column, data.winConditions.direction, data.winConditions.len);
+        console.trace();
+        markWin(data.winConditions.row, data.winConditions.column, data.winConditions.direction, data.winConditions.length);
     }
     gameOn = true;
 }
@@ -68,7 +69,6 @@ function displayEmptyBoard(){
 }
 
 function markWin(row, column, direction, length){
-
     if(length <= 0 )
         return;
 
@@ -81,7 +81,6 @@ function getFieldID(row, column){
 }
 
 function markID(fieldID){
-    console.log(fieldID);
     document.getElementById(fieldID).style.backgroundColor = "red";
 }
 
@@ -98,14 +97,11 @@ function followDirection(row, column, direction, length){
         checkColumn = column - 1;
     else
         checkColumn = column;
-    console.log("---");
-    console.log(direction);
-    console.log(checkRow);
-    console.log(checkColumn);
-    console.log("---");
+
     markWin(checkRow, checkColumn, direction, length - 1);
 }
 
 $("#reset").click(function () {
     reset(gameID);
 });
+

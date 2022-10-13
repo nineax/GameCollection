@@ -1,5 +1,4 @@
 const url = 'http://localhost:8080';
-let stompClient;
 let gameID;
 let playerType;
 
@@ -7,17 +6,17 @@ function connectToSocket(gameID) {
 
     console.log("connecting to the game");
     let socket = new SockJS(url + "/gameplay-tic-tac-toe");
-    stompClient = Stomp.over(socket);
+    let stompClient = Stomp.over(socket);
     stompClient.connect({}, function (frame) {
         console.log("connected to the frame: " + frame);
         stompClient.subscribe("/topic/tic-tac-toe-game-progress/" + gameID, function (response) {
             let data = JSON.parse(response.body);
-            displayResponse(data);
+            displayResposeee(data);
         })
     })
 }
 
-function create_game() {
+function createGame() {
     let playerName = document.getElementById("playerName").value;
     if (playerName == null || playerName === '') {
         alert("Please enter playerName");
@@ -35,7 +34,7 @@ function create_game() {
                 playerType = 'X';
                 displayEmptyBoard();
                 connectToSocket(gameID);
-                document.getElementById("displayGameID").innerHTML = gameID;
+                document.getElementById("displayGameID").innerHTML = "GameID: " + gameID;
                 alert("Your created a game. Game id is: " + data.gameID);
                 gameOn = true;
             },
@@ -67,7 +66,7 @@ function connectToRandom() {
                 connectToSocket(gameID);
                 document.getElementById("displayGameID").innerHTML = "GameID: " + gameID;
                 document.getElementById("displayOpponent").innerHTML = "Opponent: " + data.player1.name;
-                //alert("Congrats you're playing with: " + data.player1.name);
+                alert("Congrats you're playing with: " + data.player1.name);
             },
             error: function (error) {
                 console.log(error);
@@ -102,7 +101,7 @@ function connectToSpecificGame() {
                 displayEmptyBoard();
                 connectToSocket(gameID);
                 document.getElementById("displayGameID").innerHTML = "GameID: " + gameID;
-                document.getElementById("displayOpponent").innerHTML = "Opponent: "data.player1.name;
+                document.getElementById("displayOpponent").innerHTML = "Opponent: " + data.player1.name;
                 alert("Congrats you're playing with: " + data.player1.name);
             },
             error: function (error) {
@@ -123,10 +122,9 @@ function reset() {
             "gameID": gameID
         }),
         success: function (data) {
-            console.log(data);
             displayEmptyBoard();
-            gameOn = false;
-            displayResponse(data);
+            gameOn = true;
+            displayResposeee(data);
         },
         error: function (error) {
             console.log(error);
