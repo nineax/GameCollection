@@ -13,8 +13,6 @@ import java.util.UUID;
 @RequiredArgsConstructor
 @Slf4j
 public class Game {
-
-    private static Integer counter = 0;
     private String gameID;
 
     private Player currentPlayer;
@@ -60,35 +58,32 @@ public class Game {
                     CheckDirection direction = checkWin(symbol, row, column, null, 1);
                     if (direction != null) {
                         winner = currentPlayer;
-                        return new WinConditions(row, column, direction, 3);
+                        return new WinConditions(row, column, direction);
                     }
                 }
             }
         }
         return null;
     }
+
     private CheckDirection checkWin(FieldStatus player, Integer row, Integer column, CheckDirection direction, Integer length){
         if(direction == null) {
             if (player == getStatusOnCoordinate(row, column, CheckDirection.horizontal)) {
-                log.info("a");
                 CheckDirection checkDirection = checkWin(player, row, column + 1, CheckDirection.horizontal, length + 1);
                 if(checkDirection != null)
                     return checkDirection;
             }
             if (player == getStatusOnCoordinate(row, column, CheckDirection.vertical)) {
-                log.info("---bbb---");
                 CheckDirection checkDirection = checkWin(player, row + 1, column, CheckDirection.vertical, length + 1);
                 if(checkDirection != null)
                     return checkDirection;
             }
             if (player == getStatusOnCoordinate(row, column, CheckDirection.diagonalRight)) {
-                log.info("c");
                 CheckDirection checkDirection = checkWin(player, row + 1, column + 1, CheckDirection.diagonalRight, length + 1);
                 if(checkDirection != null)
                     return checkDirection;
             }
             if (player == getStatusOnCoordinate(row, column, CheckDirection.diagonalLeft)) {
-                log.info("d");
                 CheckDirection checkDirection = checkWin(player, row + 1, column - 1, CheckDirection.diagonalLeft, length + 1);
                 if(checkDirection != null)
                     return checkDirection;
@@ -98,17 +93,14 @@ public class Game {
             if(length == 3)
                 return direction;
 
-            if(player != getStatusOnCoordinate(row, column, direction))
-                return null;
-
-            Integer checkRow = direction == CheckDirection.diagonalLeft || direction == CheckDirection.diagonalRight || direction == CheckDirection.vertical ? row + 1 : row;
+            Integer checkRow = direction == CheckDirection.diagonalLeft || direction == CheckDirection.diagonalRight || direction == CheckDirection.horizontal ? row + 1 : row;
             Integer checkColumn = direction == CheckDirection.horizontal || direction == CheckDirection.diagonalRight ? column + 1 : (direction == CheckDirection.diagonalLeft ? column - 1 : column);
             return checkWin(player, checkRow, checkColumn, direction, length + 1);
         }
     }
 
     private FieldStatus getStatusOnCoordinate(Integer row, Integer column, CheckDirection direction){
-        Integer checkRow = direction == CheckDirection.diagonalLeft || direction == CheckDirection.diagonalRight || direction == CheckDirection.vertical ? row + 1 : row;
+        Integer checkRow = direction == CheckDirection.diagonalLeft || direction == CheckDirection.diagonalRight || direction == CheckDirection.horizontal ? row + 1 : row;
         Integer checkColumn = direction == CheckDirection.horizontal || direction == CheckDirection.diagonalRight ? column + 1 : (direction == CheckDirection.diagonalLeft ? column - 1 : column);
 
         if(row >= board.getHeight() || row < 0 || column >= board.getWith() || column < 0 || checkRow >= board.getHeight() || checkRow < 0 || checkColumn >= board.getWith() || checkColumn < 0)
