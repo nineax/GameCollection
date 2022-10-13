@@ -88,7 +88,7 @@ function markID(fieldID){
 function followDirection(row, column, direction, length){
     let checkRow;
     let checkColumn
-    if(direction == "diagonalLeft" || direction == "diagonalRight" || direction == "horizontal")
+    if(direction == "diagonalLeft" || direction == "diagonalRight" || direction == "vertical")
         checkRow = row + 1;
     else
         checkRow = row;

@@ -65,8 +65,9 @@ function connectToRandom() {
                 playerType = 'O';
                 displayEmptyBoard();
                 connectToSocket(gameID);
-                document.getElementById("displayGameID").innerHTML = gameID;
-                alert("Congrats you're playing with: " + data.player1.name);
+                document.getElementById("displayGameID").innerHTML = "GameID: " + gameID;
+                document.getElementById("displayOpponent").innerHTML = "Opponent: " + data.player1.name;
+                //alert("Congrats you're playing with: " + data.player1.name);
             },
             error: function (error) {
                 console.log(error);
@@ -100,7 +101,8 @@ function connectToSpecificGame() {
                 playerType = 'O';
                 displayEmptyBoard();
                 connectToSocket(gameID);
-                document.getElementById("displayGameID").innerHTML = gameID;
+                document.getElementById("displayGameID").innerHTML = "GameID: " + gameID;
+                document.getElementById("displayOpponent").innerHTML = "Opponent: "data.player1.name;
                 alert("Congrats you're playing with: " + data.player1.name);
             },
             error: function (error) {
