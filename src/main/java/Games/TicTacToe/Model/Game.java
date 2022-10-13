@@ -58,14 +58,13 @@ public class Game {
                     CheckDirection direction = checkWin(symbol, row, column, null, 1);
                     if (direction != null) {
                         winner = currentPlayer;
-                        return new WinConditions(row, column, direction);
+                        return new WinConditions(row, column, direction, 3);
                     }
                 }
             }
         }
         return null;
     }
-
     private CheckDirection checkWin(FieldStatus player, Integer row, Integer column, CheckDirection direction, Integer length){
         if(direction == null) {
             if (player == getStatusOnCoordinate(row, column, CheckDirection.horizontal)) {
@@ -93,14 +92,17 @@ public class Game {
             if(length == 3)
                 return direction;
 
-            Integer checkRow = direction == CheckDirection.diagonalLeft || direction == CheckDirection.diagonalRight || direction == CheckDirection.horizontal ? row + 1 : row;
+            if(player != getStatusOnCoordinate(row, column, direction))
+                return null;
+
+            Integer checkRow = direction == CheckDirection.diagonalLeft || direction == CheckDirection.diagonalRight || direction == CheckDirection.vertical ? row + 1 : row;
             Integer checkColumn = direction == CheckDirection.horizontal || direction == CheckDirection.diagonalRight ? column + 1 : (direction == CheckDirection.diagonalLeft ? column - 1 : column);
             return checkWin(player, checkRow, checkColumn, direction, length + 1);
         }
     }
 
     private FieldStatus getStatusOnCoordinate(Integer row, Integer column, CheckDirection direction){
-        Integer checkRow = direction == CheckDirection.diagonalLeft || direction == CheckDirection.diagonalRight || direction == CheckDirection.horizontal ? row + 1 : row;
+        Integer checkRow = direction == CheckDirection.diagonalLeft || direction == CheckDirection.diagonalRight || direction == CheckDirection.vertical ? row + 1 : row;
         Integer checkColumn = direction == CheckDirection.horizontal || direction == CheckDirection.diagonalRight ? column + 1 : (direction == CheckDirection.diagonalLeft ? column - 1 : column);
 
         if(row >= board.getHeight() || row < 0 || column >= board.getWith() || column < 0 || checkRow >= board.getHeight() || checkRow < 0 || checkColumn >= board.getWith() || checkColumn < 0)
