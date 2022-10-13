@@ -60,7 +60,7 @@ public class Game {
                     CheckDirection direction = checkWin(symbol, row, column, null, 1);
                     if (direction != null) {
                         winner = currentPlayer;
-                        return new WinConditions(row, column, direction);
+                        return new WinConditions(row, column, direction, 3);
                     }
                 }
             }
@@ -101,7 +101,7 @@ public class Game {
             if(player != getStatusOnCoordinate(row, column, direction))
                 return null;
 
-            Integer checkRow = direction == CheckDirection.diagonalLeft || direction == CheckDirection.diagonalRight || direction == CheckDirection.horizontal ? row + 1 : row;
+            Integer checkRow = direction == CheckDirection.diagonalLeft || direction == CheckDirection.diagonalRight || direction == CheckDirection.vertical ? row + 1 : row;
             Integer checkColumn = direction == CheckDirection.horizontal || direction == CheckDirection.diagonalRight ? column + 1 : (direction == CheckDirection.diagonalLeft ? column - 1 : column);
             return checkWin(player, checkRow, checkColumn, direction, length + 1);
         }

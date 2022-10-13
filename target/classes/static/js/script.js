@@ -52,6 +52,7 @@ function displayResponse(data) {
     }
     if (data.winner != null) {
         alert("Winner is " + data.winner.name);
+        markWin(data.winConditions.row, data.winConditions.column, data.winConditions.direction, data.winConditions.len);
     }
     gameOn = true;
 }
@@ -64,6 +65,45 @@ $(".tic").click(function () {
 function displayEmptyBoard(){
     turns = [["#", "#", "#"], ["#", "#", "#"], ["#", "#", "#"]];
     $(".tic").text("#");
+}
+
+function markWin(row, column, direction, length){
+
+    if(length <= 0 )
+        return;
+
+    markID(getFieldID(row, column));
+    followDirection(row, column, direction, length);
+}
+
+function getFieldID(row, column){
+    return row + "_" + column;
+}
+
+function markID(fieldID){
+    console.log(fieldID);
+    document.getElementById(fieldID).style.backgroundColor = "red";
+}
+
+function followDirection(row, column, direction, length){
+    let checkRow;
+    let checkColumn
+    if(direction == "diagonalLeft" || direction == "diagonalRight" || direction == "horizontal")
+        checkRow = row + 1;
+    else
+        checkRow = row;
+    if(direction == "horizontal" || direction == "diagonalRight")
+        checkColumn = column + 1;
+    else if(direction == "diagonalLeft")
+        checkColumn = column - 1;
+    else
+        checkColumn = column;
+    console.log("---");
+    console.log(direction);
+    console.log(checkRow);
+    console.log(checkColumn);
+    console.log("---");
+    markWin(checkRow, checkColumn, direction, length - 1);
 }
 
 $("#reset").click(function () {
