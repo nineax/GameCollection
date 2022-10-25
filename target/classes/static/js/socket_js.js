@@ -11,7 +11,7 @@ function connectToSocket(gameID) {
         console.log("connected to the frame: " + frame);
         stompClient.subscribe("/topic/tic-tac-toe-game-progress/" + gameID, function (response) {
             let data = JSON.parse(response.body);
-            displayResposeee(data);
+            displayResponse(data);
         })
     })
 }
@@ -65,8 +65,6 @@ function connectToRandom() {
                 displayEmptyBoard();
                 connectToSocket(gameID);
                 document.getElementById("displayGameID").innerHTML = "GameID: " + gameID;
-                document.getElementById("displayOpponent").innerHTML = "Opponent: " + data.player1.name;
-                alert("Congrats you're playing with: " + data.player1.name);
             },
             error: function (error) {
                 console.log(error);
@@ -82,7 +80,7 @@ function connectToSpecificGame() {
     } else {
         let gameID = document.getElementById("game_id").value;
         if (gameID == null || gameID === '') {
-            alert("Please enter game id");
+            connectToRandom();
         }
         $.ajax({
             url: url + "/games/tic-tac-toe/connect",
@@ -101,8 +99,6 @@ function connectToSpecificGame() {
                 displayEmptyBoard();
                 connectToSocket(gameID);
                 document.getElementById("displayGameID").innerHTML = "GameID: " + gameID;
-                document.getElementById("displayOpponent").innerHTML = "Opponent: " + data.player1.name;
-                alert("Congrats you're playing with: " + data.player1.name);
             },
             error: function (error) {
                 console.log(error);

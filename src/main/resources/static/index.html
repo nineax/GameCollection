@@ -24,11 +24,10 @@
         <h1>Tic Tac Toe</h1>
     </header>
     <!--https://codepen.io/melnik909/pen/BZpJLN?editors=0110-->
-    <input id="playerName" placeholder="Place a username here">
-    <button onclick="createGame()" class="btn btn-outline-primary">Create a new game</button>
-    <button onclick="connectToRandom()" class="btn btn-outline-primary">Connect to random game</button>
-    <input id="game_id" placeholder="Paste game id">
-    <button onclick="connectToSpecificGame()" class="btn btn-outline-primary"> Connect by game id</button>
+    <input id="playerName" class="btn btn-outline-primary" placeholder="Username">
+    <input id="game_id" class="btn btn-outline-primary" placeholder="GameID">
+    <button id="create" onclick="createGame()" class="btn btn-outline-primary">Create a new game</button>
+    <button id="connect" onclick="connectToSpecificGame()" class="btn btn-outline-primary"> Connect by game id</button>
     <ul id="gameBoard">
         <li class="tic" id="0_0"></li>
         <li class="tic" id="0_1"></li>

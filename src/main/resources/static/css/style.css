@@ -83,3 +83,10 @@ footer {
 #displayOpponent{
     color: white;
 }
+
+#playerName, #game_id, #create, #connect{
+    text-align: left;
+    align: left;
+    width: 45%;
+    margin: 3px
+}
