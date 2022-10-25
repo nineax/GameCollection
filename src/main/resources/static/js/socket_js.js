@@ -80,7 +80,7 @@ function connectToSpecificGame() {
     } else {
         let gameID = document.getElementById("game_id").value;
         if (gameID == null || gameID === '') {
-            connectToRandom();
+            alert("Please enter gameID");
         }
         $.ajax({
             url: url + "/games/tic-tac-toe/connect",

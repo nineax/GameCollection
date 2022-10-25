@@ -1,0 +1,198 @@
+.headline{
+    font-size: 500%;
+}
+/*
+    got it from: https://codepen.io/liamj/pen/yrEXNx
+    Styling the game Buttons
+*/
+body {
+  display: flex;
+  flex-direction: column;
+  height: 93vh;
+  justify-content: center;
+  align-items: center;
+  background: #222;
+  color: #eee;
+  font-family: "Dosis", sans-serif;
+}
+
+ .underlined-a {
+	 text-decoration: none;
+	 color: aqua;
+	 padding-bottom: 0.15em;
+	 box-sizing: border-box;
+	 box-shadow: inset 0 -0.2em 0 aqua;
+	 transition: 0.2s;
+}
+ .underlined-a:hover {
+	 color: #222;
+	 box-shadow: inset 0 -2em 0 aqua;
+	 transition: all 0.45s cubic-bezier(0.86, 0, 0.07, 1);
+}
+ .brk-btn {
+	 position: relative;
+	 background: none;
+	 color: aqua;
+	 text-transform: uppercase;
+	 text-decoration: none;
+	 border: 0.2em solid aqua;
+	 padding: 0.5em 1em;
+}
+ .brk-btn::before {
+	 content: "";
+	 display: block;
+	 position: absolute;
+	 width: 10%;
+	 background: #222;
+	 height: 0.3em;
+	 right: 20%;
+	 top: -0.21em;
+	 transform: skewX(-45deg);
+	 -webkit-transition: all 0.45s cubic-bezier(0.86, 0, 0.07, 1);
+	 transition: all 0.45s cubic-bezier(0.86, 0, 0.07, 1);
+}
+ .brk-btn::after {
+	 content: "";
+	 display: block;
+	 position: absolute;
+	 width: 10%;
+	 background: #222;
+	 height: 0.3em;
+	 left: 20%;
+	 bottom: -0.25em;
+	 transform: skewX(45deg);
+	 -webkit-transition: all 0.45 cubic-bezier(0.86, 0, 0.07, 1);
+	 transition: all 0.45s cubic-bezier(0.86, 0, 0.07, 1);
+}
+ .brk-btn:hover::before {
+	 right: 80%;
+}
+ .brk-btn:hover::after {
+	 left: 80%;
+}
+ transform: translateY(-50%);
+}
+
+/*
+    got it from: https://codepen.io/abdelrhmansaid/pen/OJRNOpQ
+    Links in the Footer
+*/
+@import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+*:focus,
+*:active {
+  outline: none !important;
+  -webkit-tap-highlight-color: transparent;
+}
+
+html,
+body {
+  display: grid;
+  height: 100%;
+  width: 100%;
+  font-family: "Poppins", sans-serif;
+  place-items: center;
+  background: #212121;
+}
+
+.wrapper {
+  display: inline-flex;
+  list-style: none;
+}
+
+.wrapper .icon {
+  position: relative;
+  background: #ffffff;
+  border-radius: 50%;
+  padding: 15px;
+  margin: 10px;
+  width: 50px;
+  height: 50px;
+  font-size: 18px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  box-shadow: 0 10px 10px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.wrapper .tooltip {
+  position: absolute;
+  top: 0;
+  font-size: 14px;
+  background: #ffffff;
+  color: #ffffff;
+  padding: 5px 8px;
+  border-radius: 5px;
+  box-shadow: 0 10px 10px rgba(0, 0, 0, 0.1);
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.wrapper .tooltip::before {
+  position: absolute;
+  content: "";
+  height: 8px;
+  width: 8px;
+  background: #ffffff;
+  bottom: -3px;
+  left: 50%;
+  transform: translate(-50%) rotate(45deg);
+  transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.wrapper .icon:hover .tooltip {
+  top: -45px;
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+
+.wrapper .icon:hover span,
+.wrapper .icon:hover .tooltip {
+  text-shadow: 0px -1px 0px rgba(0, 0, 0, 0.1);
+}
+
+.wrapper .facebook:hover,
+.wrapper .facebook:hover .tooltip,
+.wrapper .facebook:hover .tooltip::before {
+  background: #1877F2;
+  color: #ffffff;
+}
+
+.wrapper .twitter:hover,
+.wrapper .twitter:hover .tooltip,
+.wrapper .twitter:hover .tooltip::before {
+  background: #1DA1F2;
+  color: #ffffff;
+}
+
+.wrapper .instagram:hover,
+.wrapper .instagram:hover .tooltip,
+.wrapper .instagram:hover .tooltip::before {
+  background: #E4405F;
+  color: #ffffff;
+}
+
+.wrapper .github:hover,
+.wrapper .github:hover .tooltip,
+.wrapper .github:hover .tooltip::before {
+  background: #333333;
+  color: #ffffff;
+}
+
+.wrapper .youtube:hover,
+.wrapper .youtube:hover .tooltip,
+.wrapper .youtube:hover .tooltip::before {
+  background: #CD201F;
+  color: #ffffff;
+}
