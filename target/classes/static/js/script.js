@@ -34,7 +34,7 @@ function makeAMove(type, xCoordinate, yCoordinate) {
     })
 }
 
-function displayResposeee(data) {
+function displayResponse(data) {
     let board = data.board;
     for (let i = 0; i < board.playField.length; i++) {
         for (let j = 0; j < board.playField[i].length; j++) {
