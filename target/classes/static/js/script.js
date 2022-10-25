@@ -27,14 +27,13 @@ function makeAMove(type, xCoordinate, yCoordinate) {
         }),
         success: function (data) {
             gameOn = false;
-            displayResposeee(data);
         },
         error: function (error) {
             console.log(error);
         }
     })
 }
-//@TODO wird zwei mal ausgeführt nur für den gewinnenden spieler
+
 function displayResposeee(data) {
     let board = data.board;
     for (let i = 0; i < board.playField.length; i++) {
@@ -50,12 +49,16 @@ function displayResposeee(data) {
             $("#" + id).text(turns[i][j]);
         }
     }
+        gameOn = true;
+        alertWinner(data);
+}
+
+
+function alertWinner(data){
     if (data.winner != null) {
         alert("Winner is " + data.winner.name);
-        console.trace();
         markWin(data.winConditions.row, data.winConditions.column, data.winConditions.direction, data.winConditions.length);
     }
-    gameOn = true;
 }
 
 $(".tic").click(function () {
