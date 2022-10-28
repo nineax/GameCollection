@@ -9,7 +9,7 @@ public class Main {
 
     //TODO Anwendung aus dem Internet aufrufbar machen
 
-    //@TODO eine DB anbindung mit einbringen, dass der User name nicht mehr eingegeben werden muss, Schere-Stein-Papier, Würfelspiel aus Kultur of the lamb
+    //@TODO eine DB anbindung mit einbringen, dass der User name nicht mehr eingegeben werden muss, Schere-Stein-Papier, Würfelspiel aus Kultur of the lamb, Einarmiger Bandit mit einsatzt usw.
 
     //@TODO GameIdeen: 4-Gewinnt, Schiff-versenken, Mensch-Ärger-Dich-Nicht, Dame, Sudoku(generator + solver), Galgenmännchen, Errate meine Zahl
     public static void main(String[] args) {
