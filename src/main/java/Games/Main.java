@@ -5,8 +5,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
 public class Main {
-    //@TODO Reset funktioniert (Game kann nicht aus dem Storrage geladen werden) nicht, Player 2 kann kein move machen (gameID == null)
-
     //TODO Anwendung aus dem Internet aufrufbar machen
 
     //@TODO eine DB anbindung mit einbringen, dass der User name nicht mehr eingegeben werden muss

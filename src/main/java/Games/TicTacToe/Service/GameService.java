@@ -83,6 +83,7 @@ public class GameService {
             throw new GameInTheWrongStatusException();
 
         game.setBoard(new Board());
+        game.setWinner(null);
 
         return game;
     }

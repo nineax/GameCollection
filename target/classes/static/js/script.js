@@ -49,8 +49,12 @@ function displayResponse(data) {
             } else if (String(board.playField[i][j]) === 'O') {
                 turns[i][j] = 'O';
             }
-            else
+            else{
+                $(".tic").css('background-color', "#333333");
                 turns[i][j] = '#';
+            }
+
+
             let id = i + "_" + j;
             $("#" + id).text(turns[i][j]);
         }
