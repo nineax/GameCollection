@@ -26,9 +26,12 @@ function makeAMove(type, xCoordinate, yCoordinate) {
             }
         }),
         success: function (data) {
+            console.log(data);
+            console.log("---");
             gameOn = false;
         },
         error: function (error) {
+            console.log("|||");
             console.log(error);
         }
     })
