@@ -42,7 +42,9 @@ public class GameController {
 
     @PostMapping("/tic-tac-toe/turn")
     public ResponseEntity<Game> ticTacToeTurn(@RequestBody Turn turn) throws GameInTheWrongStatusException, GameNotFoundException, NotYourTurnException {
+        log.info("---turn---");
         log.info(turn.getGameID());
+        log.info("---turn---");
         log.info("In game " +  turn.getGameID() + " was made a turn");
         Game game = ticTacToeGameService.turn(turn);
         simpMessagingTemplate.convertAndSend("/topic/tic-tac-toe-game-progress/"+game.getGameID(), game);
@@ -51,6 +53,9 @@ public class GameController {
 
     @PostMapping("/tic-tac-toe/reset")
     public ResponseEntity<Game> ticTacToeReset(@RequestBody JsonGetGameID jsonGetGameID) throws GameInTheWrongStatusException, GameNotFoundException {
+        log.info("---reset---");
+        log.info(jsonGetGameID.getGameID());
+        log.info("---reset---");
         Game game = ticTacToeGameService.reset(jsonGetGameID.getGameID());
         simpMessagingTemplate.convertAndSend("/topic/tic-tac-toe-game-progress/"+game.getGameID(), game);
         return ResponseEntity.ok(game);

@@ -74,7 +74,6 @@ public class GameService {
     }
 
     public Game reset(String gameID) throws GameNotFoundException, GameInTheWrongStatusException {
-        log.info(gameID);
         if(!GameStorage.getInstance().getGames().containsKey(gameID))
             throw new GameNotFoundException();
 

@@ -5,7 +5,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
 public class Main {
-    //@TODO Homepage einbauen, bei der man die Spiele auswählen kann
+    //@TODO Reset funktioniert (Game kann nicht aus dem Storrage geladen werden) nicht, Player 2 kann kein move machen (gameID == null)
 
     //TODO Anwendung aus dem Internet aufrufbar machen
 

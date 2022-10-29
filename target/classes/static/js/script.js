@@ -12,6 +12,8 @@ function playerTurn(turn, id) {
 }
 
 function makeAMove(type, xCoordinate, yCoordinate) {
+    let gameID = document.getElementById("displayGameID").innerText;
+    console.log(gameID);
     $.ajax({
         url: url + "/games/tic-tac-toe/turn",
         type: 'POST',
@@ -26,12 +28,11 @@ function makeAMove(type, xCoordinate, yCoordinate) {
             }
         }),
         success: function (data) {
-            console.log(data);
-            console.log("---");
-            gameOn = false;
+            console.log(1);
+            gameOn = true;
         },
         error: function (error) {
-            console.log("|||");
+            console.log(2);
             console.log(error);
         }
     })
