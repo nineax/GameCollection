@@ -120,7 +120,7 @@ function reset() {
         success: function (data) {
             displayEmptyBoard();
             gameOn = true;
-            displayResposeee(data);
+            displayResponse(data);
         },
         error: function (error) {
             console.log(error);

@@ -12,8 +12,10 @@ function playerTurn(turn, id) {
 }
 
 function makeAMove(type, xCoordinate, yCoordinate) {
+    console.log("---");
     let gameID = document.getElementById("displayGameID").innerText;
     console.log(gameID);
+    console.log("---");
     $.ajax({
         url: url + "/games/tic-tac-toe/turn",
         type: 'POST',
