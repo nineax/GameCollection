@@ -22,7 +22,7 @@ function createGame() {
         alert("Please enter playerName");
     } else {
         $.ajax({
-            url: url + "/games/tic-tac-toe/create",
+            url: url + "/tic-tac-toe/create",
             type: 'POST',
             dataType: "json",
             contentType: "application/json",
@@ -34,7 +34,7 @@ function createGame() {
                 playerType = 'X';
                 displayEmptyBoard();
                 connectToSocket(gameID);
-                document.getElementById("displayGameID").innerHTML = gameID;
+                document.getElementById("displayGameID").innerHTML = "GameID: " + gameID;
                 alert("Your created a game. Game id is: " + data.gameID);
                 gameOn = true;
             },
@@ -64,7 +64,7 @@ function connectToRandom() {
                 playerType = 'O';
                 displayEmptyBoard();
                 connectToSocket(gameID);
-                document.getElementById("displayGameID").innerHTML = gameID;
+                document.getElementById("displayGameID").innerHTML = "GameID: " + gameID;
             },
             error: function (error) {
                 console.log(error);
@@ -98,7 +98,7 @@ function connectToSpecificGame() {
                 playerType = 'O';
                 displayEmptyBoard();
                 connectToSocket(gameID);
-                document.getElementById("displayGameID").innerHTML = gameID;
+                document.getElementById("displayGameID").innerHTML = "GameID: " + gameID;
             },
             error: function (error) {
                 console.log(error);
@@ -120,7 +120,7 @@ function reset() {
         success: function (data) {
             displayEmptyBoard();
             gameOn = true;
-            displayResponse(data);
+            displayRespose(data);
         },
         error: function (error) {
             console.log(error);

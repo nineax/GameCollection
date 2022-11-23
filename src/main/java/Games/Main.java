@@ -6,7 +6,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class Main {
     //TODO Anwendung aus dem Internet aufrufbar machen
-    //@todo verlinkungen im code so gestallten, das das game in nginx spiel bar ist
+    //@TODO spring boot auf den port lauschen lassen, dass die anfragen behandelt werden können
 
     //@TODO eine DB anbindung mit einbringen, dass der User name nicht mehr eingegeben werden muss
 

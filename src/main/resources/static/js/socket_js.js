@@ -22,7 +22,7 @@ function createGame() {
         alert("Please enter playerName");
     } else {
         $.ajax({
-            url: url + "/games/tic-tac-toe/create",
+            url: url + "/tic-tac-toe/create",
             type: 'POST',
             dataType: "json",
             contentType: "application/json",
