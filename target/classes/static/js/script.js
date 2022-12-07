@@ -12,10 +12,6 @@ function playerTurn(turn, id) {
 }
 
 function makeAMove(type, xCoordinate, yCoordinate) {
-    console.log("---");
-    let gameID = document.getElementById("displayGameID").innerText;
-    console.log(gameID);
-    console.log("---");
     $.ajax({
         url: url + "/games/tic-tac-toe/turn",
         type: 'POST',
@@ -30,11 +26,9 @@ function makeAMove(type, xCoordinate, yCoordinate) {
             }
         }),
         success: function (data) {
-            console.log(1);
-            gameOn = true;
+            gameOn = false;
         },
         error: function (error) {
-            console.log(2);
             console.log(error);
         }
     })
@@ -49,12 +43,8 @@ function displayResponse(data) {
             } else if (String(board.playField[i][j]) === 'O') {
                 turns[i][j] = 'O';
             }
-            else{
-                $(".tic").css('background-color', "#333333");
+            else
                 turns[i][j] = '#';
-            }
-
-
             let id = i + "_" + j;
             $("#" + id).text(turns[i][j]);
         }

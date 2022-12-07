@@ -2,8 +2,10 @@ package Games;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.data.web.config.EnableSpringDataWebSupport;
 
 @SpringBootApplication
+@EnableSpringDataWebSupport
 public class Main {
     //TODO Anwendung aus dem Internet aufrufbar machen
     //@TODO spring boot auf den port lauschen lassen, dass die anfragen behandelt werden können
